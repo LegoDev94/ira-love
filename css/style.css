@@ -346,11 +346,12 @@ body.playing .sound-btn{opacity:1}
 /* сцена 3 — камера ближе */
 #s3{--car:clamp(320px,44vw,700px)}
 /* Ира с мамой по центру на тротуаре, машина на дороге за ними, водительским окном к ним */
-#s3 .standing{left:50%;bottom:5%;z-index:7}
-#s3 .car-side.stop{bottom:12%;z-index:6;transform-origin:30% 100%}
+/* Ира с мамой на тротуаре ЗА машиной, крупно; машина перед ними закрывает им ноги */
+#s3{--road:7%}
+#s3 .standing{left:50%;height:calc(var(--car) * .58);bottom:calc(var(--road) + var(--car) * .11);z-index:5}
+#s3 .car-side.stop{bottom:var(--road);z-index:7;transform-origin:30% 100%}
 @media (max-width:700px){
-  #s3 .standing{bottom:7%}
-  #s3 .car-side.stop{bottom:14%}
+  #s3{--road:10%;--car:clamp(340px,88vw,700px)}
 }
 /* текст не закрывает машины: в сценах 3 и 7 он в небе */
 #s3 .subs,#s3 .subs .sub{bottom:auto;top:0}

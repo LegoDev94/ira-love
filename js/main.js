@@ -197,13 +197,16 @@ gsap.timeline({ scrollTrigger: { trigger: '#title', start: 'top top', end: '+=10
 
 // ---------- 3. ДОРОГА ДО ГОРОДКА ----------
 (function s3() {
-  const tl = pinScene('#s3', 520);
-  const subs = $$('#s3 .sub');
-  tl.fromTo('#s3 .bg', { scale: 1.1 }, { scale: 1, duration: 12 }, 0)
-    // Ира с мамой — в центре кадра; машина тормозит так, что водительское окно (≈40% от носа) напротив них
+  const tl = pinScene('#s3', 600);
+  const subs = $$('#s3 .sub'), car = $('#car3');
+  tl.fromTo('#s3 .bg', { scale: 1.1 }, { scale: 1, duration: 13.5 }, 0)
+    // Ира с мамой стоят по центру на тротуаре; машина тормозит перед ними, водительским окном к ним
     .fromTo('#standing', { xPercent: -50, y: 20, opacity: 0 }, { xPercent: -50, y: 0, opacity: 1, duration: 1 }, 0)
-    .fromTo('#car3', { left: () => innerWidth * 1.05 }, { left: () => innerWidth * .5 - $('#car3').offsetWidth * .4, duration: 1.8, ease: 'power3.out' }, .2)
-    .fromTo('#car3', { rotate: 0 }, { rotate: -1.2, duration: .25, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 1.75);
+    .fromTo(car, { left: () => innerWidth * 1.05 }, { left: () => innerWidth * .5 - car.offsetWidth * .45, duration: 1.8, ease: 'power3.out' }, .2)
+    .fromTo(car, { rotate: 0 }, { rotate: -1.2, duration: .25, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 1.75)
+    // диалог окончен — машина уезжает, они остаются стоять
+    .call(() => Sound.whoosh(), null, 10.5)
+    .to(car, { left: () => -car.offsetWidth * 1.1, duration: 1.4, ease: 'power2.in' }, 10.5);
   subIn(tl, subs[0], 1.6, 1);
   tl.fromTo('#stamp', { opacity: 0, scale: 3, rotate: -24 }, { opacity: 1, scale: 1, rotate: -12, duration: .35, ease: 'back.out(2)' }, 2.4)
     .call(() => Sound.pop(), null, 2.45)
@@ -213,8 +216,8 @@ gsap.timeline({ scrollTrigger: { trigger: '#title', start: 'top top', end: '+=10
   subIn(tl, subs[3], 6.3, .5);
   subIn(tl, subs[4], 7.4, .9);
   subIn(tl, subs[5], 8.8, 1);
-  tl.to('#ask', { opacity: 1, visibility: 'visible', duration: .8 }, 10.4)
-    .fromTo('#ask > *', { y: 30, opacity: 0 }, { y: 0, opacity: 1, stagger: .2, duration: .6 }, 10.6)
+  tl.to('#ask', { opacity: 1, visibility: 'visible', duration: .8 }, 12.4)
+    .fromTo('#ask > *', { y: 30, opacity: 0 }, { y: 0, opacity: 1, stagger: .2, duration: .6 }, 12.6)
     .to({}, { duration: 1 });
   $('#notAgainstBtn').addEventListener('click', e => {
     FX.hearts(e.clientX, e.clientY, 40); Sound.chime();

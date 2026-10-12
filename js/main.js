@@ -496,7 +496,7 @@ gsap.timeline({ scrollTrigger: { trigger: '#title', start: 'top top', end: '+=10
   gsap.from('.final-ui > :not(.final-msg)', { opacity: 0, y: 50, stagger: .2, scrollTrigger: { trigger: '.final-ui', start: 'top 85%', end: 'top 45%', scrub: 1 } });
 
   const no = $('#noBtn'), yes = $('#yesBtn'), wrap = $('#answers');
-  const NO_TEXT = ['Точно нет?', 'Подумай ещё 🥺', 'Ну пожалуйста', 'Я же круг ради тебя сделал', 'Чай с заправки?', 'Кнопка устала', 'Ладно, это тоже «да»'];
+  const NO_TEXT = ['Точно нет?', 'Подумай ещё 🥺', 'Ну пожалуйста', 'Я же круг ради тебя сделал', 'А если с массажем?', 'Кнопка устала', 'Ладно, это тоже «да»'];
   let n = 0;
   const dodge = e => {
     e && e.preventDefault();

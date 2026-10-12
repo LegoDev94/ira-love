@@ -36,7 +36,7 @@ emotional romantic mood. No text, no letters, no watermarks, no logos, no UI.
 
 ## Персонажи
 
-**МАШИНА ГЕРОЯ** — `dark graphite-grey modern sedan` ← *Кирилл: впиши сюда марку и цвет своей машины, например `white 2016 Toyota Camry`. Подставляй эту строку везде, где написано {HERO_CAR}.*
+**МАШИНА ГЕРОЯ** — `dark graphite-grey modern sedan` ← *Владимир: впиши сюда марку и цвет своей машины, например `white 2016 Toyota Camry`. Подставляй эту строку везде, где написано {HERO_CAR}.*
 
 **IRA** (референс: `_refs/ira-ref.png`, бери черты лица и волосы):
 ```
@@ -45,7 +45,7 @@ fair skin, soft delicate features, light eyes, gentle shy smile. Outfit: black s
 polo collar and buttons, black shorts, white crew socks, chunky grey sneakers.
 ```
 
-**HIM / Кирилл** (референс: `_refs/him-ref.jpg`):
+**HIM / Владимир** (референс: `_refs/him-ref.jpg`):
 ```
 HIM: man about 28, short dark brown hair, short neat dark beard, thin rectangular metal-frame glasses,
 calm warm eyes, white linen shirt with open collar, dark jeans.
@@ -126,7 +126,7 @@ MOM: kind woman about 47, shoulder-length dark brown hair, light summer cardigan
 | `_raw/textures/paper.png` | P | Seamless top-down texture of warm cream handmade letter paper, subtle fibers, very faint watercolor stains in the corners, soft vignette, completely empty (handwritten text will be placed on top). Must stay light so dark text is readable. |
 | `_raw/og-cover.png` | L | Cinematic movie-poster style key art: on the left IRA and MOM walking along a village road at golden sunset, on the right {HERO_CAR} making a U-turn with a glowing light trail drawing a heart shape on the road. Lots of warm sky. Keep the right-hand third of the sky empty. No text. + STYLE |
 
-> `og-cover` — это картинка-превью, которую Telegram покажет, когда Кирилл отправит ссылку на сайт. Скрипт обрежет её до 1200×630.
+> `og-cover` — это картинка-превью, которую Telegram покажет, когда Владимир отправит ссылку на сайт. Скрипт обрежет её до 1200×630.
 
 ---
 

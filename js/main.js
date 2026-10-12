@@ -68,7 +68,7 @@ $('#soundBtn').addEventListener('click', () => $('#soundBtn').classList.toggle('
 
 // ---------- HUD: таймкод, сцена, прогресс ----------
 (function hud() {
-  const tc = $('#timecode'), bar = $('#hudBar'), sc = $('#hudScene'), t0 = performance.now();
+  const tc = $('#timecode'), bar = $('#hudBar'), t0 = performance.now();
   const pad = n => String(n).padStart(2, '0');
   gsap.ticker.add(() => {
     const s = (performance.now() - t0) / 1000;
@@ -76,11 +76,6 @@ $('#soundBtn').addEventListener('click', () => $('#soundBtn').classList.toggle('
     const max = document.documentElement.scrollHeight - innerHeight;
     bar.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
   });
-  // триггеры сцен создаются в самом конце, когда все пины уже на месте
-  window.hudScenes = () => $$('.scene[data-hud]').forEach(s => ScrollTrigger.create({
-    trigger: s.parentElement.classList.contains('pin-spacer') ? s.parentElement : s, start: 'top 50%', end: 'bottom 50%',
-    onToggle: self => self.isActive && (sc.textContent = s.dataset.hud)
-  }));
 })();
 
 // ---------- утилиты ----------
@@ -528,6 +523,5 @@ gsap.timeline({ scrollTrigger: { trigger: '#credits', start: 'top top', end: '+=
   .fromTo('#roll', { yPercent: 0 }, { yPercent: -100, y: () => -innerHeight * .15, ease: 'none' });
 $('#replayBtn').addEventListener('click', () => (lenis ? lenis.scrollTo(0, { duration: 4 }) : scrollTo({ top: 0, behavior: 'smooth' })));
 
-hudScenes();
 addEventListener('load', () => ScrollTrigger.refresh());
 document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());

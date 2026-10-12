@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,500;0,800;1,500;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body class="locked">
 
@@ -29,7 +29,6 @@
 
 <div class="hud" aria-hidden="true">
   <div class="hud-rec"><i></i>REC <span id="timecode">00:00:00:00</span></div>
-  <div class="hud-scene" id="hudScene">СЦЕНА 00 · ПРОЛОГ</div>
   <div class="hud-progress"><b id="hudBar"></b></div>
 </div>
 <button class="sound-btn" id="soundBtn" aria-label="Звук">
@@ -53,7 +52,7 @@
 <main id="story">
 
 <!-- ============ ТИТУЛ ============ -->
-<section class="scene title-scene" id="title" data-hud="СЦЕНА 00 · ПРОЛОГ">
+<section class="scene title-scene" id="title">
   <div class="stage">
     <div class="title-glow"></div>
     <p class="presents">Кинокомпания «Один круг» представляет</p>
@@ -65,7 +64,7 @@
 </section>
 
 <!-- ============ 1. МАРКУЛЕШТЫ ============ -->
-<section class="scene" id="s1" data-hud="СЦЕНА 01 · МАРКУЛЕШТЫ">
+<section class="scene" id="s1">
   <div class="stage">
     <div class="bg bg-s1" data-bg="assets/bg/s01-village-sunset.webp"></div>
     <div class="sun"></div>
@@ -109,7 +108,7 @@
 </section>
 
 <!-- ============ 2. КРУГ ============ -->
-<section class="scene" id="s2" data-hud="СЦЕНА 02 · ОДИН КРУГ">
+<section class="scene" id="s2">
   <div class="stage map-stage">
     <svg id="map" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" aria-label="Карта круга">
       <defs>
@@ -161,7 +160,7 @@
 </section>
 
 <!-- ============ 3. ДОРОГА ДО ГОРОДКА ============ -->
-<section class="scene" id="s3" data-hud="СЦЕНА 03 · ДОРОГА ДО ГОРОДКА">
+<section class="scene" id="s3">
   <div class="stage">
     <div class="bg bg-s3" data-bg="assets/bg/s03-road-dusk.webp"></div>
     <div class="road-strip dusk"></div>
@@ -191,7 +190,7 @@
 </section>
 
 <!-- ============ 4. TELEGRAM ============ -->
-<section class="scene" id="s4" data-hud="СЦЕНА 04 · TELEGRAM">
+<section class="scene" id="s4">
   <div class="stage tg-stage">
     <div class="tg-side">
       <p class="kicker">Ты дала мне свой Telegram.</p>
@@ -220,7 +219,7 @@
 </section>
 
 <!-- ============ 5. 23:00 ============ -->
-<section class="scene" id="s5" data-hud="СЦЕНА 05 · 23:00">
+<section class="scene" id="s5">
   <div class="stage">
     <div class="bg bg-s5" data-bg="assets/bg/s05-night-village.webp"></div>
     <canvas id="stars" class="stars-canvas"></canvas>
@@ -240,7 +239,7 @@
 </section>
 
 <!-- ============ 6. ЗАПРАВКА ============ -->
-<section class="scene" id="s6" data-hud="СЦЕНА 06 · ЗАПРАВКА">
+<section class="scene" id="s6">
   <div class="stage">
     <div class="bg bg-s6" data-bg="assets/bg/s06-gas-station.webp"></div>
     <div class="neon-sign">ЧАЙ · 24/7</div>
@@ -271,7 +270,7 @@
 </section>
 
 <!-- ============ 7. СЮЖЕТНЫЙ ПОВОРОТ ============ -->
-<section class="scene" id="s7" data-hud="СЦЕНА 07 · СЮЖЕТНЫЙ ПОВОРОТ">
+<section class="scene" id="s7">
   <div class="stage">
     <div class="bg bg-s7" data-bg="assets/bg/s07-night-street.webp"></div>
     <div class="police" id="police"><i class="red"></i><i class="blue"></i></div>
@@ -296,7 +295,7 @@
 </section>
 
 <!-- ============ 8. 4 ИЮНЯ ============ -->
-<section class="scene" id="s8" data-hud="СЦЕНА 08 · 4 ИЮНЯ">
+<section class="scene" id="s8">
   <div class="stage cal-stage">
     <p class="kicker center">Потом мы общались. Каждый день.</p>
     <div class="calendar" id="calendar">
@@ -321,7 +320,7 @@
 </section>
 
 <!-- ============ 9. ШТОРМ ============ -->
-<section class="scene" id="s9" data-hud="СЦЕНА 09 · ШТОРМ">
+<section class="scene" id="s9">
   <div class="stage">
     <div class="bg bg-s9" data-bg="assets/bg/s09-storm.webp"></div>
     <div class="captions">
@@ -336,7 +335,7 @@
 </section>
 
 <!-- ============ 10. ПРОСТИ ============ -->
-<section class="scene flow" id="s10" data-hud="СЦЕНА 10 · ПРОСТИ">
+<section class="scene flow" id="s10">
   <div class="bg bg-s10" data-bg="assets/bg/s10-dawn.webp"></div>
   <div class="hold-wrap">
     <p class="kicker center">Ира, зажми сердце — и останови этот дождь</p>
@@ -361,7 +360,7 @@
 </section>
 
 <!-- ============ 11. ОБЕЩАНИЯ ============ -->
-<section class="scene flow" id="s11" data-hud="СЦЕНА 11 · ОБЕЩАНИЯ">
+<section class="scene flow" id="s11">
   <h2 class="section-title">Я обещаю<small>нажми на каждую карточку</small></h2>
   <div class="promises">
     <button class="promise"><div class="pf"><b>01</b><span>когда злюсь</span></div><div class="pb">Когда мне захочется повысить голос — я сначала тебя обниму.</div></button>
@@ -373,7 +372,7 @@
 </section>
 
 <!-- ============ 12. ПРИЧИНЫ ============ -->
-<section class="scene flow" id="s12" data-hud="СЦЕНА 12 · ПОЧЕМУ ТЫ">
+<section class="scene flow" id="s12">
   <h2 class="section-title">Почему ты<small>тяни карточки — их много</small></h2>
   <div class="deck">
     <div class="card" id="reasonCard"><span class="card-n" id="reasonN">01</span><p id="reasonText">Нажми «ещё причина».</p><i class="card-heart">❤</i></div>
@@ -382,7 +381,7 @@
 </section>
 
 <!-- ============ 13. ФИНАЛ ============ -->
-<section class="scene flow final" id="s13" data-hud="СЦЕНА 13 · ФИНАЛ">
+<section class="scene flow final" id="s13">
   <div class="bg bg-s12" data-bg="assets/bg/s12-final-sky.webp"></div>
   <canvas id="loveCanvas"></canvas>
   <div class="final-ui">
@@ -403,7 +402,7 @@
 </section>
 
 <!-- ============ ТИТРЫ ============ -->
-<section class="scene" id="credits" data-hud="ТИТРЫ">
+<section class="scene" id="credits">
   <div class="stage credits-stage">
     <div class="credits-roll" id="roll">
       <h3>РАЗВОРОТ</h3>
@@ -457,9 +456,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/config.js?v=3"></script>
-<script src="js/audio.js?v=3"></script>
-<script src="js/fx.js?v=3"></script>
-<script src="js/main.js?v=3"></script>
+<script src="js/config.js?v=4"></script>
+<script src="js/audio.js?v=4"></script>
+<script src="js/fx.js?v=4"></script>
+<script src="js/main.js?v=4"></script>
 </body>
 </html>

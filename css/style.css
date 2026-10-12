@@ -33,10 +33,9 @@ body.playing .hud{opacity:1}
 .hud-rec{position:absolute;top:calc(5.5vh + 12px);right:18px;display:flex;align-items:center;gap:8px}
 .hud-rec i{width:8px;height:8px;border-radius:50%;background:#ff2e4d;animation:blink 1.2s infinite}
 @keyframes blink{50%{opacity:.15}}
-.hud-scene{position:absolute;bottom:calc(5.5vh + 14px);left:18px}
 .hud-progress{position:absolute;top:calc(5.5vh + 0px);left:0;right:0;height:2px;background:rgba(255,255,255,.06)}
 .hud-progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rose),var(--gold))}
-@media (max-width:700px){.hud-rec{top:calc(3vh + 10px)}.hud-scene{bottom:calc(3vh + 12px);font-size:10px}.hud-progress{top:3vh}}
+@media (max-width:700px){.hud-rec{top:calc(3vh + 10px)}.hud-progress{top:3vh}}
 .sound-btn{position:fixed;z-index:97;right:16px;bottom:calc(5.5vh + 6px);width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:grid;place-items:center;opacity:0;transition:opacity 1s}
 @media (max-width:700px){.sound-btn{bottom:calc(3vh + 4px)}}
 body.playing .sound-btn{opacity:1}

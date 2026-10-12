@@ -197,9 +197,8 @@ body.playing .sound-btn{opacity:1}
 .polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .polaroid .fb{position:relative!important;inset:auto!important;width:100%;aspect-ratio:4/5;height:auto!important;display:grid;place-items:center;background:linear-gradient(160deg,#2b1b3d,#5c2d4f);font-size:60px}
 .polaroid p{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-family:var(--hand);font-size:24px;color:#3a2a33}
-.cups{position:absolute;bottom:10vh;left:50%;transform:translateX(-50%);display:flex;gap:clamp(40px,10vw,140px);z-index:10}
-.cup{position:relative;width:clamp(60px,8vw,100px)}
-.cup[data-cup="2"]{transform:scaleX(-1)}
+.cups{position:absolute;inset:0;pointer-events:none}
+.cup{position:absolute;left:0;top:0;width:clamp(58px,7vw,96px);pointer-events:auto;will-change:transform}
 .steam{position:absolute;left:50%;top:-10%;transform:translateX(-50%);width:40px;height:70px;pointer-events:none}
 .steam i{position:absolute;bottom:0;left:50%;width:10px;height:40px;border-radius:50%;background:rgba(255,255,255,.35);filter:blur(6px);animation:steam 3s ease-out infinite}
 .steam i:nth-child(2){animation-delay:1s;margin-left:-12px}.steam i:nth-child(3){animation-delay:2s;margin-left:8px}

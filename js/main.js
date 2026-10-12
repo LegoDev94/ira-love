@@ -297,19 +297,37 @@ gsap.timeline({ scrollTrigger: { trigger: '#title', start: 'top top', end: '+=10
 
 // ---------- 6. ЗАПРАВКА ----------
 (function s6() {
-  const tl = pinScene('#s6', 260);
+  const stage = $('#s6 .stage'), photo = $('#polaroid'), cups = $$('.cup');
+  const orbit = { speed: .55, angle: 0 };
+  const tl = pinScene('#s6', 260, { onToggle: self => self.isActive ? gsap.ticker.add(fly) : gsap.ticker.remove(fly) });
   tl.fromTo('#s6 .bg', { scale: 1.15 }, { scale: 1, duration: 8 }, 0)
     .fromTo('#polaroid', { opacity: 0, y: 80, rotate: 8 }, { opacity: 1, y: 0, rotate: -4, duration: 1.2, ease: 'power3.out' }, 2.2)
-    .from('.cups .cup', { y: 120, opacity: 0, stagger: .2, duration: .8, ease: 'back.out(1.6)' }, .4);
+    .fromTo('.cup', { opacity: 0 }, { opacity: 1, duration: 1, stagger: .3 }, 2.8);
   const caps = $$('#s6 .cap');
   capIn(tl, caps[0], .3, .8);
   capIn(tl, caps[1], 1.9, .8);
   capIn(tl, caps[2], 3.6, 1.2);
   tl.set(caps[3], { opacity: 1 }, 5.6).fromTo(caps[3], { opacity: 0 }, { opacity: 1, duration: .3 }, 5.6).to({}, { duration: 1.5 });
-  $$('.cup').forEach(c => c.addEventListener('click', e => {
+
+  // два чая левитируют по орбите вокруг фото: сзади — меньше и за снимком, спереди — крупнее и перед ним
+  function fly(t, dtMs) {
+    orbit.angle += Math.min(.05, dtMs / 1000) * orbit.speed;
+    const s = stage.getBoundingClientRect(), p = photo.getBoundingClientRect();
+    const cx = p.left - s.left + p.width / 2, cy = p.top - s.top + p.height / 2;
+    cups.forEach((c, i) => {
+      const a = orbit.angle + i * Math.PI, depth = Math.sin(a);
+      const bob = Math.sin(t * 1.4 + i * 2) * 8;
+      gsap.set(c, {
+        x: cx + Math.cos(a) * Math.min(p.width * .78, s.width / 2 - c.offsetWidth * .75) - c.offsetWidth / 2,
+        y: cy + depth * p.height * .3 + bob - c.offsetHeight / 2,
+        scale: 1 + depth * .18, rotate: Math.cos(a) * 14,
+        zIndex: depth > 0 ? 9 : 7, filter: `brightness(${.75 + (depth + 1) * .15})`
+      });
+    });
+  }
+  cups.forEach(c => c.addEventListener('click', e => {
     Sound.clink(); FX.hearts(e.clientX, e.clientY - 40, 14);
-    gsap.fromTo('.cup[data-cup="1"]', { x: 0 }, { x: 18, duration: .15, yoyo: true, repeat: 1 });
-    gsap.fromTo('.cup[data-cup="2"]', { x: 0 }, { x: -18, duration: .15, yoyo: true, repeat: 1 });
+    gsap.fromTo(orbit, { speed: 4 }, { speed: .55, duration: 1.6, ease: 'power2.out' });
   }));
 })();
 

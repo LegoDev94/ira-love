@@ -138,3 +138,25 @@ MOM: kind woman about 47, shoulder-length dark brown hair, light summer cardigan
 - [ ] На картинках нет текста и водяных знаков.
 - [ ] `python tools/optimize.py` отработал без ошибок, в `assets/` появились `.webp`.
 - [ ] Сайт проверен на телефоне в вертикальной ориентации.
+
+---
+
+## Шаг 5. ПЕРЕДЕЛАТЬ (по итогам проверки)
+
+Почти всё получилось отлично. Перегенерируй только эти 3 файла и снова запусти `python tools/optimize.py`, потом закоммить и запушь.
+
+**Что не так:** HIM нарисован качком в белой майке с надписью «BOSS». На фото он обычного телосложения,
+в очках и светлой льняной рубашке. И **никакого текста на одежде**. Машина героя получилась точной копией
+чёрной Audi, а в истории это две разные машины.
+
+```
+HIM (fix): man about 28 with a normal slim build (NOT muscular, NOT a bodybuilder), short dark brown hair,
+short neat dark beard, thin rectangular metal-frame glasses, white long-sleeve linen shirt with rolled-up sleeves
+and open collar, dark jeans. Match the face of _refs/him-ref.jpg. Absolutely no text, letters or logos on clothing.
+```
+
+| Файл | Размер | Промпт |
+|---|---|---|
+| `_raw/characters/couple-tea.png` | P | IRA and HIM (fix) at night at a small roadside gas station, sitting together on the hood of {HERO_CAR}, each holding a paper cup of hot tea with steam, IRA laughing, HIM looking at her instead of the tea, neon and canopy light, cozy first-date feeling. The car must NOT look like an Audi (no four-ring badge, different grille). Vertical composition, faces in the upper-middle. + STYLE |
+| `_raw/characters/couple-final.png` | S | IRA and HIM (fix) hugging under a starry night sky with the milky way, HIM gently resting his forehead on hers, eyes closed, IRA smiling, fireflies around, warm rose and violet glow, feeling of forgiveness and deep love. No text anywhere. + STYLE |
+| `_raw/objects/car-side.png` | L, TRANSPARENT | {HERO_CAR}, perfect side profile, FRONT points LEFT, headlights on, whole car visible, no ground, transparent background. It must clearly differ from a black Audi A6: different body shape and colour, no four-ring badge. + STYLE |

@@ -24,6 +24,12 @@ for src in sorted(RAW.rglob("*.png")):
         if max(im.size) > limit:
             im.thumbnail((limit, limit), Image.LANCZOS)
         im = im.convert("RGBA") if im.mode in ("RGBA", "LA", "P") else im.convert("RGB")
+        # спрайты: срезаем пустые прозрачные поля, чтобы размеры на сайте были предсказуемыми
+        if im.mode == "RGBA" and rel.parts[0] in ("characters", "objects"):
+            box = im.getchannel("A").point(lambda a: 255 if a > 8 else 0).getbbox()
+            if box:
+                pad = int(max(im.size) * 0.01)
+                im = im.crop((max(0, box[0] - pad), max(0, box[1] - pad), min(im.width, box[2] + pad), min(im.height, box[3] + pad)))
         dst = OUT / rel.with_suffix(".webp")
         dst.parent.mkdir(parents=True, exist_ok=True)
         im.save(dst, "WEBP", quality=82, method=6)

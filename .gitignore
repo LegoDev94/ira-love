@@ -1,0 +1,4 @@
+_refs/
+_raw/
+.playwright-mcp/
+__pycache__/

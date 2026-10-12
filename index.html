@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Разворот — для Иры</title>
+<meta name="description" content="Одна история. Один круг. Один разворот. Для Иры.">
+<meta property="og:title" content="Разворот">
+<meta property="og:description" content="Ира, у меня есть для тебя одна история. Включи звук.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://legodev94.github.io/ira-love/assets/og-cover.jpg">
+<meta name="theme-color" content="#07060a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff4d6d' d='M12 21s-7.6-4.7-10-9.4C.4 8.2 2.3 4 6.3 4c2.3 0 3.8 1.3 4.7 2.8C11.9 5.3 13.4 4 15.7 4c4 0 5.9 4.2 4.3 7.6C19.6 16.3 12 21 12 21z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,500;0,800;1,500;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="locked">
+
+<!-- ============ ГЛОБАЛЬНЫЙ СЛОЙ ============ -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="letterbox top" aria-hidden="true"></div>
+<div class="letterbox bottom" aria-hidden="true"></div>
+<canvas id="rain" aria-hidden="true"></canvas>
+<div class="flash" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<div class="hud" aria-hidden="true">
+  <div class="hud-rec"><i></i>REC <span id="timecode">00:00:00:00</span></div>
+  <div class="hud-scene" id="hudScene">СЦЕНА 00 · ПРОЛОГ</div>
+  <div class="hud-progress"><b id="hudBar"></b></div>
+</div>
+<button class="sound-btn" id="soundBtn" aria-label="Звук">
+  <span class="bars"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<!-- ============ ВХОД ============ -->
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <div class="asset envelope">
+      <img data-src="assets/objects/envelope-seal.webp" alt="">
+      <svg class="fb" viewBox="0 0 200 140"><rect x="6" y="10" width="188" height="124" rx="8" fill="#f3e6d3"/><path d="M6 18 100 86 194 18" fill="none" stroke="#d8c3a5" stroke-width="3"/><circle cx="100" cy="84" r="22" fill="#b3122e"/><path d="M100 95s-10-6-12-12c-1.6-4.6 1.2-9 5.6-9 3 0 5 2 6.4 4 1.4-2 3.4-4 6.4-4 4.4 0 7.2 4.4 5.6 9-2 6-12 12-12 12z" fill="#ffd9de"/></svg>
+    </div>
+    <p class="gate-line" data-type>Ира,</p>
+    <p class="gate-line" data-type>у меня есть для тебя одна история.</p>
+    <p class="gate-hint">🎧 включи звук · лучше в наушниках</p>
+    <button class="gate-btn" id="startBtn"><span>Открыть</span><svg viewBox="0 0 24 24"><path d="M12 21s-7.6-4.7-10-9.4C.4 8.2 2.3 4 6.3 4c2.3 0 3.8 1.3 4.7 2.8C11.9 5.3 13.4 4 15.7 4c4 0 5.9 4.2 4.3 7.6C19.6 16.3 12 21 12 21z"/></svg></button>
+  </div>
+</div>
+
+<main id="story">
+
+<!-- ============ ТИТУЛ ============ -->
+<section class="scene title-scene" id="title" data-hud="СЦЕНА 00 · ПРОЛОГ">
+  <div class="stage">
+    <div class="title-glow"></div>
+    <p class="presents">Кинокомпания «Один круг» представляет</p>
+    <h1 class="film-title"><span>Р</span><span>А</span><span>З</span><span>В</span><span>О</span><span>Р</span><span>О</span><span>Т</span></h1>
+    <p class="film-sub">история о том, как один разворот изменил всю мою жизнь</p>
+    <p class="film-cast">в главной роли — <em>Ира</em></p>
+    <div class="scroll-cue"><span>листай вниз</span><i></i></div>
+  </div>
+</section>
+
+<!-- ============ 1. МАРКУЛЕШТЫ ============ -->
+<section class="scene" id="s1" data-hud="СЦЕНА 01 · МАРКУЛЕШТЫ">
+  <div class="stage">
+    <div class="bg bg-s1" data-bg="assets/bg/s01-village-sunset.webp"></div>
+    <div class="sun"></div>
+    <svg class="fb-village" viewBox="0 0 1600 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path fill="#3a2433" d="M0 300 Q200 240 420 280 T860 260 T1300 270 T1600 250 V400 H0Z"/>
+      <g fill="#24151f"><rect x="120" y="250" width="120" height="80"/><path d="M110 252 180 205 250 252Z"/><rect x="330" y="262" width="90" height="70"/><path d="M322 264 375 228 428 264Z"/><rect x="900" y="248" width="140" height="84"/><path d="M890 250 970 200 1050 250Z"/><rect x="1180" y="258" width="100" height="72"/><path d="M1172 260 1230 222 1288 260Z"/>
+      <ellipse cx="560" cy="230" rx="70" ry="90"/><ellipse cx="660" cy="250" rx="50" ry="70"/><ellipse cx="1420" cy="225" rx="80" ry="100"/><rect x="556" y="280" width="8" height="50"/><rect x="1416" y="290" width="8" height="40"/></g>
+      <rect y="330" width="1600" height="70" fill="#16101a"/><rect y="362" width="1600" height="4" fill="#3b2f3d"/>
+    </svg>
+    <div class="road-strip"></div>
+
+    <div class="asset walkers" id="walkers">
+      <img data-src="assets/characters/ira-mom-walk.webp" alt="Ира с мамой">
+      <svg class="fb" viewBox="0 0 150 170">
+        <g class="fig fig-a"><circle cx="45" cy="24" r="12" fill="#1a1016"/><path d="M33 22c0-12 24-12 24 0v34h-6V30H39v26h-6z" fill="#4b3a2a"/><path d="M34 42h22l4 46H30z" fill="#140c12"/><rect x="31" y="86" width="28" height="16" rx="3" fill="#140c12"/><path d="M37 102v52M53 102v52" stroke="#140c12" stroke-width="7" stroke-linecap="round"/></g>
+        <g class="fig fig-b"><circle cx="105" cy="24" r="12" fill="#1a1016"/><path d="M93 20c0-14 24-14 24 0v10H93z" fill="#221318"/><path d="M93 40h24l6 72H87z" fill="#1d1219"/><path d="M98 112v42M112 112v42" stroke="#1d1219" stroke-width="7" stroke-linecap="round"/></g>
+      </svg>
+    </div>
+
+    <div class="asset car-side" id="car1">
+      <img data-src="assets/objects/car-side.webp" alt="">
+      <svg class="fb" viewBox="0 0 320 110"><use href="#svgCar"/></svg>
+    </div>
+    <div class="headbeam" id="beam1"></div>
+
+    <div class="asset fg-grass" id="fg1">
+      <img data-src="assets/bg/s01-foreground-grass.webp" alt="">
+    </div>
+
+    <div class="slowmo" id="slowmo"><span>0.25×</span></div>
+    <div class="focus-ring" id="focusRing"></div>
+
+    <div class="captions">
+      <p class="cap" data-step="1"><small>Маркулешты.</small>Обычный вечер.</p>
+      <p class="cap" data-step="2">Ты гуляла с мамой.</p>
+      <p class="cap" data-step="3">А я ехал мимо.<br>Просто мимо.</p>
+      <p class="cap big" data-step="4">И вдруг время<br><em>замедлилось.</em></p>
+      <p class="cap" data-step="5">Одна секунда.<br>Мне её хватило.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. КРУГ ============ -->
+<section class="scene" id="s2" data-hud="СЦЕНА 02 · ОДИН КРУГ">
+  <div class="stage map-stage">
+    <svg id="map" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" aria-label="Карта круга">
+      <defs>
+        <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <pattern id="field" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#2c2433"/></pattern>
+      </defs>
+      <rect x="-200" y="-200" width="1400" height="1000" fill="url(#field)"/>
+      <g class="blocks" fill="#1d1824" stroke="#2f2738">
+        <rect x="340" y="190" width="370" height="150" rx="10"/>
+        <rect x="40" y="190" width="220" height="150" rx="10"/><rect x="780" y="190" width="200" height="150" rx="10"/>
+        <rect x="40" y="490" width="920" height="90" rx="10"/><rect x="40" y="30" width="920" height="80" rx="10"/>
+      </g>
+      <g class="houses" fill="#2e2536">
+        <rect x="370" y="215" width="50" height="40" rx="4"/><rect x="450" y="225" width="60" height="45" rx="4"/><rect x="560" y="210" width="45" height="40" rx="4"/><rect x="630" y="250" width="55" height="45" rx="4"/>
+        <rect x="80" y="220" width="55" height="45" rx="4"/><rect x="170" y="260" width="50" height="40" rx="4"/><rect x="820" y="225" width="60" height="45" rx="4"/>
+        <rect x="120" y="510" width="60" height="40" rx="4"/><rect x="260" y="515" width="50" height="40" rx="4"/><rect x="640" y="510" width="70" height="45" rx="4"/><rect x="830" y="515" width="55" height="40" rx="4"/>
+      </g>
+      <g fill="#203024"><circle cx="530" cy="300" r="16"/><circle cx="300" cy="70" r="20"/><circle cx="700" cy="60" r="16"/><circle cx="460" cy="540" r="18"/></g>
+      <g class="roads" fill="none" stroke="#3a3342" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M-100 420 H1100" stroke-width="84"/>
+        <path d="M300 420 V150 H740 V420" stroke-width="52"/>
+      </g>
+      <g fill="none" stroke="#6b6176" stroke-dasharray="14 16" stroke-width="2"><path d="M-100 420 H1100"/><path d="M300 400 V150 H740 V400"/></g>
+      <path d="M-100 368 H1100" stroke="#4b4254" stroke-width="10"/>
+      <text x="500" y="135" class="map-label" text-anchor="middle">МАРКУЛЕШТЫ</text>
+      <path id="trail" d="M1080 440 L320 440 Q300 440 300 420 L300 170 Q300 150 320 150 L720 150 Q740 150 740 170 L740 420 Q740 440 720 440 L440 440 C385 440 385 400 440 400 L540 400" fill="none" stroke="#ff4d6d" stroke-width="5" stroke-linecap="round" filter="url(#glow)"/>
+      <g id="iraPin" transform="translate(520 362)">
+        <circle r="26" class="pin-pulse" fill="#ff4d6d" opacity=".25"/>
+        <circle r="7" fill="#ffd166"/><circle cx="16" r="7" fill="#c9a2d9"/>
+        <text y="-22" text-anchor="middle" class="pin-label">Ира и мама</text>
+      </g>
+      <g id="carTop" class="asset">
+        <g class="fb"><rect x="-26" y="-14" width="52" height="28" rx="9" fill="#2b2b33" stroke="#ff4d6d" stroke-width="2"/><rect x="2" y="-11" width="12" height="22" rx="3" fill="#7ea8c9"/><rect x="-20" y="-10" width="8" height="20" rx="2" fill="#7ea8c9"/><circle cx="25" cy="-9" r="3" fill="#fff6c2"/><circle cx="25" cy="9" r="3" fill="#fff6c2"/></g>
+        <image data-src="assets/objects/car-top.webp" x="-18" y="-32" width="36" height="64" transform="rotate(90)" preserveAspectRatio="xMidYMid meet" class="car-top-img"/>
+      </g>
+    </svg>
+    <div class="map-ui">
+      <div class="meter"><span>круг</span><b id="lapCount">0</b></div>
+      <div class="meter"><span>пульс</span><b id="pulse">72</b></div>
+    </div>
+    <div class="captions">
+      <p class="cap" data-step="1">Я проехал мимо.</p>
+      <p class="cap" data-step="2">И понял, что мне<br><em>мало одного взгляда.</em></p>
+      <p class="cap" data-step="3">Поэтому я сделал круг.<br>Целый круг — ради тебя.</p>
+      <p class="cap" data-step="4">Второй взгляд был<br>ещё лучше первого.</p>
+      <p class="cap big" data-step="5">А потом —<br><em>разворот.</em> Прямо перед вами.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. ДОРОГА ДО ГОРОДКА ============ -->
+<section class="scene" id="s3" data-hud="СЦЕНА 03 · ДОРОГА ДО ГОРОДКА">
+  <div class="stage">
+    <div class="bg bg-s3" data-bg="assets/bg/s03-road-dusk.webp"></div>
+    <div class="road-strip dusk"></div>
+    <div class="asset standing" id="standing">
+      <img data-src="assets/characters/ira-mom-standing.webp" alt="">
+      <svg class="fb" viewBox="0 0 150 170"><use href="#svgPair"/></svg>
+    </div>
+    <div class="asset car-side stop" id="car3">
+      <img data-src="assets/objects/car-side.webp" alt="">
+      <svg class="fb" viewBox="0 0 320 110"><use href="#svgCar"/></svg>
+    </div>
+    <div class="subs">
+      <p class="sub" data-step="1"><b>Я:</b> Извините, не подскажете, как доехать до городка?</p>
+      <p class="sub" data-step="3"><b>Мама:</b> подробно и очень вежливо объясняет дорогу.</p>
+      <p class="sub" data-step="4"><b>Я:</b> Спасибо… А это ваша дочь?</p>
+      <p class="sub" data-step="5"><b>Мама:</b> Да.</p>
+      <p class="sub" data-step="6"><b>Я:</b> А можно с ней познакомиться?</p>
+      <p class="sub" data-step="7"><b>Мама:</b> Если она не против — можно.</p>
+    </div>
+    <div class="stamp" id="stamp">ДОРОГУ Я ЗНАЛ</div>
+    <div class="ask" id="ask">
+      <p>Ира, ты была не против.</p>
+      <p class="ask-small">И это было лучшее «не против» в моей жизни.</p>
+      <button class="love-btn" id="notAgainstBtn">Я не против 😊</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. TELEGRAM ============ -->
+<section class="scene" id="s4" data-hud="СЦЕНА 04 · TELEGRAM">
+  <div class="stage tg-stage">
+    <div class="tg-side">
+      <p class="kicker">Ты дала мне свой Telegram.</p>
+      <h2>Мы списались.<br><em>И понеслось.</em></h2>
+      <p class="note">*переписка восстановлена по памяти — примерно так оно и было</p>
+    </div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="tg-head">
+        <div class="asset tg-ava"><img data-src="assets/characters/ira-portrait.webp" alt=""><span class="fb">И</span></div>
+        <div><b>Ира</b><small id="tgStatus">в сети</small></div>
+      </div>
+      <div class="tg-body" id="tgBody"><div class="tg-feed" id="tgFeed">
+        <div class="msg me" data-step="1">Привет 🙂 Это тот самый, который «не знал дорогу»</div>
+        <div class="msg her" data-step="2">Хахах, привет 😄</div>
+        <div class="msg me" data-step="3">Признаюсь: дорогу я знал.<br>Я не знал, как к тебе подойти</div>
+        <div class="msg her" data-step="4">Я так и поняла 🙈</div>
+        <div class="msg me" data-step="5">Можно я за тобой заеду сегодня?</div>
+        <div class="msg her" data-step="6">Во сколько?</div>
+        <div class="msg me" data-step="7">В 11?</div>
+        <div class="msg her" data-step="8">😳 ...давай</div>
+        <div class="typing" id="typing"><i></i><i></i><i></i></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. 23:00 ============ -->
+<section class="scene" id="s5" data-hud="СЦЕНА 05 · 23:00">
+  <div class="stage">
+    <div class="bg bg-s5" data-bg="assets/bg/s05-night-village.webp"></div>
+    <canvas id="stars" class="stars-canvas"></canvas>
+    <div class="clock" id="clock">
+      <div class="digit"><span>2</span></div><div class="digit"><span>2</span></div>
+      <i class="colon">:</i>
+      <div class="digit"><span id="d3">5</span></div><div class="digit"><span id="d4">9</span></div>
+    </div>
+    <div class="headlights" id="headlights"><i></i><i></i></div>
+    <div class="captions">
+      <p class="cap" data-step="1">В 11 ночи я приехал за тобой.</p>
+      <p class="cap" data-step="2">И мы поехали кататься.<br><em>Без маршрута. Без плана.</em></p>
+      <p class="cap small-cap" data-step="3">✦ нажимай на яркие звёзды</p>
+    </div>
+    <div class="star-wishes" id="starWishes"></div>
+  </div>
+</section>
+
+<!-- ============ 6. ЗАПРАВКА ============ -->
+<section class="scene" id="s6" data-hud="СЦЕНА 06 · ЗАПРАВКА">
+  <div class="stage">
+    <div class="bg bg-s6" data-bg="assets/bg/s06-gas-station.webp"></div>
+    <div class="neon-sign">ЧАЙ · 24/7</div>
+    <div class="polaroid asset" id="polaroid">
+      <img data-src="assets/characters/couple-tea.webp" alt="Мы с чаем на заправке">
+      <div class="fb"><span>☕☕</span></div>
+      <p>та самая ночь</p>
+    </div>
+    <div class="cups">
+      <button class="asset cup" data-cup="1" aria-label="Чай">
+        <img data-src="assets/objects/tea-cup.webp" alt="">
+        <svg class="fb" viewBox="0 0 80 110"><use href="#svgCup"/></svg>
+        <span class="steam"><i></i><i></i><i></i></span>
+      </button>
+      <button class="asset cup" data-cup="2" aria-label="Чай">
+        <img data-src="assets/objects/tea-cup.webp" alt="">
+        <svg class="fb" viewBox="0 0 80 110"><use href="#svgCup"/></svg>
+        <span class="steam"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+    <div class="captions">
+      <p class="cap" data-step="1">Заправка. Ночь. Два чая.</p>
+      <p class="cap" data-step="2">Самый вкусный чай в моей жизни.</p>
+      <p class="cap big" data-step="3">И дело было<br><em>точно не в чае.</em></p>
+      <p class="cap small-cap" data-step="4">✦ чокнись чаем</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. СЮЖЕТНЫЙ ПОВОРОТ ============ -->
+<section class="scene" id="s7" data-hud="СЦЕНА 07 · СЮЖЕТНЫЙ ПОВОРОТ">
+  <div class="stage">
+    <div class="bg bg-s7" data-bg="assets/bg/s07-night-street.webp"></div>
+    <div class="police" id="police"><i class="red"></i><i class="blue"></i></div>
+    <div class="subs center">
+      <p class="sub" data-step="1">Было уже поздно. Мы ехали назад.</p>
+      <p class="sub" data-step="2"><b>Я:</b> А до скольки тебе разрешили?</p>
+      <p class="sub" data-step="3"><b>Ты:</b> Не знаю 🙂</p>
+      <p class="sub" data-step="4">Я дал тебе позвонить маме…</p>
+    </div>
+    <h2 class="twist" id="twist"><span>ТЕБЯ</span><span>ИСКАЛИ.</span><span class="sm">С ПОЛИЦИЕЙ.</span></h2>
+    <p class="twist-joke" id="twistJoke">Я, оказывается, «похитил» тебя… на чай.</p>
+    <div class="asset audi" id="audi">
+      <img data-src="assets/objects/audi-black.webp" alt="">
+      <svg class="fb" viewBox="0 0 320 110"><use href="#svgAudi"/></svg>
+    </div>
+    <div class="captions">
+      <p class="cap" data-step="5">Я запомнил только, как ты садишься<br>в чёрную Audi.</p>
+      <p class="cap" data-step="6">Ты всех успокоила.<br><em>Ты это умеешь.</em></p>
+      <p class="cap" data-step="7">Я оставил тебя у дома и уехал.<br>А сердце — осталось.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. 4 ИЮНЯ ============ -->
+<section class="scene" id="s8" data-hud="СЦЕНА 08 · 4 ИЮНЯ">
+  <div class="stage cal-stage">
+    <p class="kicker center">Потом мы общались. Каждый день.</p>
+    <div class="calendar" id="calendar">
+      <div class="sheet"><b>МАЙ</b><span>18</span></div>
+      <div class="sheet"><b>МАЙ</b><span>23</span></div>
+      <div class="sheet"><b>МАЙ</b><span>27</span></div>
+      <div class="sheet"><b>МАЙ</b><span>31</span></div>
+      <div class="sheet"><b>ИЮНЬ</b><span>2</span></div>
+      <div class="sheet"><b>ИЮНЬ</b><span>3</span></div>
+      <div class="sheet last"><b>ИЮНЬ · 2025</b><span>4</span><small>мой день рождения</small></div>
+    </div>
+    <div class="cal-text" id="calText">
+      <h2>В мой день рождения<br><em>ты стала моей.</em></h2>
+      <p>Лучший подарок за всю мою жизнь — не в коробке. Он — со светлыми волосами и самой красивой улыбкой.</p>
+    </div>
+    <div class="counter" id="counter">
+      <p>мы вместе уже</p>
+      <div class="cnt"><div><b id="cD">0</b><span>дней</span></div><div><b id="cH">0</b><span>часов</span></div><div><b id="cM">0</b><span>минут</span></div><div><b id="cS">0</b><span>секунд</span></div></div>
+      <p class="cnt-fun" id="cntFun"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. ШТОРМ ============ -->
+<section class="scene" id="s9" data-hud="СЦЕНА 09 · ШТОРМ">
+  <div class="stage">
+    <div class="bg bg-s9" data-bg="assets/bg/s09-storm.webp"></div>
+    <div class="captions">
+      <p class="cap" data-step="1">Было всякое.<br>Не только хорошее.</p>
+      <p class="cap" data-step="2">Мы ссорились.<br><em>Много.</em></p>
+      <p class="cap" data-step="3">Ты тревожишься. И это не слабость —<br>это то, как сильно ты чувствуешь.</p>
+      <p class="cap" data-step="4">А я кричу.<br>И это не сила. <em>Это моя ошибка.</em></p>
+      <p class="cap big" data-step="5">И сейчас мы снова<br>поссорились…</p>
+      <p class="cap" data-step="6">А без твоего голоса<br>у меня в голове — вот такой дождь.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. ПРОСТИ ============ -->
+<section class="scene flow" id="s10" data-hud="СЦЕНА 10 · ПРОСТИ">
+  <div class="bg bg-s10" data-bg="assets/bg/s10-dawn.webp"></div>
+  <div class="hold-wrap">
+    <p class="kicker center">Ира, зажми сердце — и останови этот дождь</p>
+    <button class="hold" id="holdBtn" aria-label="Зажми и держи">
+      <svg viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="54"/><circle class="ring" id="holdRing" cx="60" cy="60" r="54"/></svg>
+      <svg class="hold-heart" viewBox="0 0 24 24"><path d="M12 21s-7.6-4.7-10-9.4C.4 8.2 2.3 4 6.3 4c2.3 0 3.8 1.3 4.7 2.8C11.9 5.3 13.4 4 15.7 4c4 0 5.9 4.2 4.3 7.6C19.6 16.3 12 21 12 21z"/></svg>
+    </button>
+    <p class="hold-hint" id="holdHint">держи…</p>
+  </div>
+  <h2 class="sorry" id="sorry"><span>Прости</span><span>меня.</span></h2>
+  <div class="letter" id="letter">
+    <div class="letter-paper" data-bg="assets/textures/paper.webp">
+      <p>Ира,</p>
+      <p>я знаю, что сделал тебе больно. Не столько словами — голосом. Тем, как я кричу, когда злюсь.</p>
+      <p>Ты тревожишься — а я вместо того, чтобы обнять, становлюсь громче. И делаю только хуже. Это не твоя вина. Это моя.</p>
+      <p>Я не хочу быть человеком, рядом с которым тебе страшно. Я хочу быть человеком, рядом с которым тебе спокойно.</p>
+      <p>Помнишь ту ночь? Тебя искали все — а ты сидела со мной в машине с чаем, и тебе не было страшно. Я хочу, чтобы рядом со мной тебе всегда было вот так.</p>
+      <p>Прости меня. Я учусь. Ради тебя — учусь.</p>
+      <p class="sign">Люблю тебя. Очень.<br><span class="me-name">Кирилл</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. ОБЕЩАНИЯ ============ -->
+<section class="scene flow" id="s11" data-hud="СЦЕНА 11 · ОБЕЩАНИЯ">
+  <h2 class="section-title">Я обещаю<small>нажми на каждую карточку</small></h2>
+  <div class="promises">
+    <button class="promise"><div class="pf"><b>01</b><span>когда злюсь</span></div><div class="pb">Когда мне захочется повысить голос — я сначала тебя обниму.</div></button>
+    <button class="promise"><div class="pf"><b>02</b><span>когда тебе тревожно</span></div><div class="pb">Твоя тревога — не «накручивание». Когда тебе страшно, я буду спокойным и рядом.</div></button>
+    <button class="promise"><div class="pf"><b>03</b><span>перед ответом</span></div><div class="pb">10 секунд тишины перед ответом. Даже если я прав. Особенно если я прав.</div></button>
+    <button class="promise"><div class="pf"><b>04</b><span>в любой ссоре</span></div><div class="pb">Мы — команда. Мы ругаемся с проблемой, а не друг с другом.</div></button>
+    <button class="promise"><div class="pf"><b>05</b><span>всегда</span></div><div class="pb">Говорить «прости» первым. Я начинаю прямо сейчас.</div></button>
+  </div>
+</section>
+
+<!-- ============ 12. ПРИЧИНЫ ============ -->
+<section class="scene flow" id="s12" data-hud="СЦЕНА 12 · ПОЧЕМУ ТЫ">
+  <h2 class="section-title">Почему ты<small>тяни карточки — их много</small></h2>
+  <div class="deck">
+    <div class="card" id="reasonCard"><span class="card-n" id="reasonN">01</span><p id="reasonText">Нажми «ещё причина».</p><i class="card-heart">❤</i></div>
+  </div>
+  <button class="love-btn" id="reasonBtn">Ещё причина</button>
+</section>
+
+<!-- ============ 13. ФИНАЛ ============ -->
+<section class="scene flow final" id="s13" data-hud="СЦЕНА 13 · ФИНАЛ">
+  <div class="bg bg-s12" data-bg="assets/bg/s12-final-sky.webp"></div>
+  <canvas id="loveCanvas"></canvas>
+  <div class="final-ui">
+    <div class="asset couple" id="couple">
+      <img data-src="assets/characters/couple-final.webp" alt="Мы">
+    </div>
+    <h2 class="question">Ира, ты меня прощаешь?</h2>
+    <div class="answers" id="answers">
+      <button class="love-btn yes" id="yesBtn">Да ❤️</button>
+      <button class="no-btn" id="noBtn">Нет</button>
+    </div>
+    <div class="final-msg" id="finalMsg">
+      <h3>Тогда я уже еду.</h3>
+      <p>Чай с заправки — за мной ☕<br>Дорогу к тебе я знаю наизусть.</p>
+      <a class="love-btn tg-link" id="tgLink" target="_blank" rel="noopener">Написать ему ❤️</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ТИТРЫ ============ -->
+<section class="scene" id="credits" data-hud="ТИТРЫ">
+  <div class="stage credits-stage">
+    <div class="credits-roll" id="roll">
+      <h3>РАЗВОРОТ</h3>
+      <dl>
+        <dt>В главной роли</dt><dd>Ира</dd>
+        <dt>Мама</dt><dd>за «если она не против»</dd>
+        <dt>Полиция</dt><dd>за драматургию</dd>
+        <dt>Чёрная Audi</dt><dd>эпизодическая роль</dd>
+        <dt>Заправка</dt><dd>за самый вкусный чай</dd>
+        <dt>Дорога до городка</dt><dd>которую я знал</dd>
+        <dt>Один круг и один разворот</dt><dd>за всё</dd>
+        <dt>Режиссёр, сценарист<br>и тот, кто любит</dt><dd class="me-name">Кирилл</dd>
+      </dl>
+      <p class="tbc">Продолжение следует…<br><em>всю жизнь.</em></p>
+      <button class="replay" id="replayBtn">↺ посмотреть ещё раз</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ SVG-ЗАГОТОВКИ (пока Codex не нарисовал графику) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="svgCar">
+      <path d="M10 78 18 60q4-9 16-11l56-6 28-22q8-6 22-6h78q16 0 28 10l26 22q26 4 34 11l4 20q0 8-10 8H20q-10 0-10-8z" fill="#2a2b35"/>
+      <path d="M100 44 122 26q6-4 16-4h36v22zM184 22h32q14 0 24 8l18 14h-74z" fill="#8fb4d6" opacity=".85"/>
+      <circle cx="72" cy="86" r="20" fill="#0d0d12"/><circle cx="72" cy="86" r="8" fill="#9aa"/>
+      <circle cx="250" cy="86" r="20" fill="#0d0d12"/><circle cx="250" cy="86" r="8" fill="#9aa"/>
+      <rect x="12" y="62" width="14" height="7" rx="3" fill="#fff3b0"/><rect x="300" y="60" width="10" height="8" rx="2" fill="#ff3b3b"/>
+    </g>
+    <g id="svgAudi">
+      <path d="M10 78 18 60q4-9 16-11l56-6 28-22q8-6 22-6h78q16 0 28 10l26 22q26 4 34 11l4 20q0 8-10 8H20q-10 0-10-8z" fill="#050507" stroke="#333" stroke-width="2"/>
+      <path d="M100 44 122 26q6-4 16-4h36v22zM184 22h32q14 0 24 8l18 14h-74z" fill="#2c3644"/>
+      <circle cx="72" cy="86" r="20" fill="#140c12"/><circle cx="72" cy="86" r="8" fill="#555"/>
+      <circle cx="250" cy="86" r="20" fill="#140c12"/><circle cx="250" cy="86" r="8" fill="#555"/>
+      <g fill="none" stroke="#bbb" stroke-width="2"><circle cx="150" cy="64" r="5"/><circle cx="158" cy="64" r="5"/><circle cx="166" cy="64" r="5"/><circle cx="174" cy="64" r="5"/></g>
+      <rect x="300" y="60" width="10" height="8" rx="2" fill="#ff3b3b"/>
+    </g>
+    <g id="svgPair">
+      <circle cx="45" cy="24" r="12" fill="#1a1016"/><path d="M33 22c0-12 24-12 24 0v34h-6V30H39v26h-6z" fill="#4b3a2a"/><path d="M34 42h22l4 46H30z" fill="#140c12"/><rect x="31" y="86" width="28" height="16" rx="3" fill="#140c12"/><path d="M38 102v52M52 102v52" stroke="#140c12" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="105" cy="24" r="12" fill="#1a1016"/><path d="M93 20c0-14 24-14 24 0v10H93z" fill="#221318"/><path d="M93 40h24l6 72H87z" fill="#1d1219"/><path d="M99 112v42M111 112v42" stroke="#1d1219" stroke-width="7" stroke-linecap="round"/>
+    </g>
+    <g id="svgCup">
+      <path d="M12 22h56l-7 80q-1 6-7 6H26q-6 0-7-6z" fill="#f4ede2"/><rect x="8" y="14" width="64" height="12" rx="4" fill="#ddd2c2"/><path d="M15 50h50l-3 30H18z" fill="#c0392b"/><path d="M33 58c-3 4 2 8 7 13 5-5 10-9 7-13-2-3-5-2-7 0-2-2-5-3-7 0z" fill="#fff"/>
+    </g>
+  </defs>
+</svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

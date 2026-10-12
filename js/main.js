@@ -200,8 +200,10 @@ gsap.timeline({ scrollTrigger: { trigger: '#title', start: 'top top', end: '+=10
   const tl = pinScene('#s3', 520);
   const subs = $$('#s3 .sub');
   tl.fromTo('#s3 .bg', { scale: 1.1 }, { scale: 1, duration: 12 }, 0)
-    .fromTo('#car3', { left: '105%' }, { left: MOBILE ? '42%' : '44%', duration: 1.6, ease: 'power3.out' }, 0)
-    .fromTo('#standing', { xPercent: -10, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 1 }, 0);
+    // Ира с мамой — в центре кадра; машина тормозит так, что водительское окно (≈40% от носа) напротив них
+    .fromTo('#standing', { xPercent: -50, y: 20, opacity: 0 }, { xPercent: -50, y: 0, opacity: 1, duration: 1 }, 0)
+    .fromTo('#car3', { left: () => innerWidth * 1.05 }, { left: () => innerWidth * .5 - $('#car3').offsetWidth * .4, duration: 1.8, ease: 'power3.out' }, .2)
+    .fromTo('#car3', { rotate: 0 }, { rotate: -1.2, duration: .25, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 1.75);
   subIn(tl, subs[0], 1.6, 1);
   tl.fromTo('#stamp', { opacity: 0, scale: 3, rotate: -24 }, { opacity: 1, scale: 1, rotate: -12, duration: .35, ease: 'back.out(2)' }, 2.4)
     .call(() => Sound.pop(), null, 2.45)

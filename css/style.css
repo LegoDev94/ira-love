@@ -345,10 +345,12 @@ body.playing .sound-btn{opacity:1}
 .walkers>.fb,.standing>.fb{aspect-ratio:150/170}
 /* сцена 3 — камера ближе */
 #s3{--car:clamp(320px,44vw,700px)}
-#s3 .standing{left:6%;bottom:13%}
-#s3 .car-side.stop{bottom:7%}
+/* Ира с мамой по центру на тротуаре, машина на дороге за ними, водительским окном к ним */
+#s3 .standing{left:50%;bottom:5%;z-index:7}
+#s3 .car-side.stop{bottom:12%;z-index:6;transform-origin:30% 100%}
 @media (max-width:700px){
-  #s3 .standing{left:2%;bottom:16%}
+  #s3 .standing{bottom:7%}
+  #s3 .car-side.stop{bottom:14%}
 }
 /* текст не закрывает машины: в сценах 3 и 7 он в небе */
 #s3 .subs,#s3 .subs .sub{bottom:auto;top:0}

@@ -2,3 +2,4 @@ _refs/
 _raw/
 .playwright-mcp/
 __pycache__/
+photo_*.jpg

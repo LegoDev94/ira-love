@@ -493,6 +493,9 @@ gsap.timeline({ scrollTrigger: { trigger: '#title', start: 'top top', end: '+=10
     trigger: '#s13', start: 'top 80%', end: 'bottom top',
     onToggle: self => { if (self.isActive) { LoveText.on(); Sound.mood('dawn'); } else LoveText.off(); }
   });
+  // фото «проявляется», как полароид
+  gsap.fromTo('#couple img', { filter: 'brightness(2.2) saturate(0) blur(6px)' }, { filter: 'brightness(1) saturate(1) blur(0px)', ease: 'none',
+    scrollTrigger: { trigger: '#couple', start: 'top 90%', end: 'top 35%', scrub: 1 } });
   gsap.from('.final-ui > :not(.final-msg)', { opacity: 0, y: 50, stagger: .2, scrollTrigger: { trigger: '.final-ui', start: 'top 85%', end: 'top 45%', scrub: 1 } });
 
   const no = $('#noBtn'), yes = $('#yesBtn'), wrap = $('#answers');
